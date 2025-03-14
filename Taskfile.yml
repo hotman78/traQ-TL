@@ -1,0 +1,25 @@
+version: "3"
+
+tasks:
+  showcase:
+    dir: NeoShowcase
+    cmds:
+      - make init && make up
+    desc: "Default task"
+
+  down-showcase:
+    dir: NeoShowcase
+    cmds:
+      - make down
+    desc: "Build the project"
+
+  traq:
+    dir: traQ
+    cmds:
+      - make up
+    desc: "Run tests"
+
+  clean:
+    cmds:
+      - echo "Cleaning up..."
+    desc: "Clean the project"
