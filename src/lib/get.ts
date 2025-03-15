@@ -5,8 +5,8 @@ export async function get(cookie: string, path: string, query: string) {
     headers: new Headers({
       Cookie: cookie,
       Path: path,
-      Query: query,
-    }),
+      Query: query
+    })
   });
   return res;
 }
@@ -22,8 +22,8 @@ export async function login(name: string, password: string) {
     method: "POST",
     headers: new Headers({
       name: name,
-      password: password,
-    }),
+      password: password
+    })
   });
   return res.headers.getSetCookie().toString();
 }

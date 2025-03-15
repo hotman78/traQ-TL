@@ -2,6 +2,7 @@ export const config = {
   runtime: "experimental-edge"
 };
 
+
 export async function GET(req: Request) {
   // const SERVER = "http://q-dev.trapti.tech";
   const SERVER = "http://host.docker.internal:3000";
