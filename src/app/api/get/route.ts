@@ -1,5 +1,5 @@
 export const config = {
-  runtime: "experimental-edge",
+  runtime: "experimental-edge"
 };
 
 export async function GET(req: Request) {
@@ -11,8 +11,8 @@ export async function GET(req: Request) {
   const res = await fetch(`${SERVER}/api/v3${path}?${query}`, {
     method: "GET",
     headers: new Headers({
-      Cookie: cookie || "",
-    }),
+      Cookie: cookie || ""
+    })
   });
   console.log(res);
   return res;

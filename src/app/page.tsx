@@ -3,7 +3,7 @@ import {
   ChannelType,
   MessageType,
   SubscriptionType,
-  UserType,
+  UserType
 } from "../lib/type";
 import { get_json, login } from "../lib/get";
 import { date2str } from "../lib/date2str";
@@ -16,9 +16,9 @@ export default async function Home() {
       return get_json(
         cookie,
         `/channels/${subscription.channelId}/messages`,
-        "",
+        ""
       );
-    }),
+    })
   );
   const messages = rawmessages.flat().sort((a: MessageType, b: MessageType) => {
     return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
@@ -26,21 +26,21 @@ export default async function Home() {
   const users: UserType[] = await get_json(
     cookie,
     `/users`,
-    "include-suspended=false",
+    "include-suspended=false"
   );
   const channels: { public: ChannelType[] } = await get_json(
     cookie,
     `/channels`,
-    "",
+    ""
   );
 
   return (
     <div>
       <main>
         {messages.map((message: MessageType) => {
-          const user = users.filter((user) => user.id === message.userId)[0];
+          const user = users.filter(user => user.id === message.userId)[0];
           const channel = channels.public.filter(
-            (channel) => channel.id === message.channelId,
+            channel => channel.id === message.channelId
           )[0];
           return (
             <div key={message.id} className="card">

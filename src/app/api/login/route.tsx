@@ -6,13 +6,13 @@ export async function POST(req: Request) {
   const res = await fetch(`${SERVER}/api/v3/login`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({
       name: name,
-      password: password,
+      password: password
     }),
-    credentials: "include", // 追加
+    credentials: "include" // 追加
   });
   return res;
 }
