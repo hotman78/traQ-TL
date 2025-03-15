@@ -19,7 +19,17 @@ tasks:
       - make up
     desc: "Run tests"
 
-  clean:
+  lint:
     cmds:
-      - echo "Cleaning up..."
-    desc: "Clean the project"
+      - docker compose run -it app yarn lint
+    desc: "Lint the project"
+
+  format:
+    cmds:
+      - docker compose run -it app yarn format
+    desc: "Format the project"
+  format-and-lint:
+    deps:
+      - format
+      - lint
+    desc: "Format and lint the project"
