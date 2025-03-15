@@ -21,15 +21,23 @@ tasks:
 
   lint:
     cmds:
-      - docker compose run -it app yarn lint
+      - docker compose run -it --remove-orphans app yarn lint
     desc: "Lint the project"
 
   format:
     cmds:
-      - docker compose run -it app yarn format
+      - docker compose run -it --remove-orphans app yarn format
     desc: "Format the project"
   format-and-lint:
     deps:
       - format
       - lint
     desc: "Format and lint the project"
+  dev:
+    cmds:
+      - docker compose up --remove-orphans
+    desc: "Run the project"
+  start:
+    cmds:
+      - docker compose run -it --remove-orphans --service-ports app bash -c 'yarn build && yarn start'
+    desc: "Run the project"

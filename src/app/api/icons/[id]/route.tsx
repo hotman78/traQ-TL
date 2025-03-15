@@ -2,7 +2,8 @@ export const config = {
   runtime: "experimental-edge"
 };
 
-export async function GET(req: Request, { params }: any) {
+/* eslint-disable */
+export async function GET(req: Request, { params }) {
   console.log(params);
   const { id } = await params;
   // const SERVER = "https://q-dev.trapti.tech";
@@ -10,3 +11,4 @@ export async function GET(req: Request, { params }: any) {
   const res = await fetch(`${SERVER}/api/v3/public/icon/${id}`);
   return res;
 }
+/* eslint-disable */
