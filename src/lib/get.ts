@@ -1,4 +1,4 @@
-export async function get_json(cookie: string, path: string, query: string) {
+export async function get(cookie: string, path: string, query: string) {
   const SERVER = "http://localhost:3000";
   const res = await fetch(`${SERVER}/api/get`, {
     method: "GET",
@@ -8,7 +8,22 @@ export async function get_json(cookie: string, path: string, query: string) {
       Query: query,
     }),
   });
-  // console.log(res);
-  const data = await res.json();
-  return data;
+  return res;
+}
+
+export async function get_json(cookie: string, path: string, query: string) {
+  const res = await get(cookie, path, query);
+  return res.json();
+}
+
+export async function login(name: string, password: string) {
+  const SERVER = "http://localhost:3000";
+  const res = await fetch(`${SERVER}/api/login`, {
+    method: "POST",
+    headers: new Headers({
+      name: name,
+      password: password,
+    }),
+  });
+  return res.headers.getSetCookie().toString();
 }
