@@ -25,7 +25,7 @@ export default async function Home() {
       return get_json(
         cookie,
         `/channels/${subscription.channelId}/messages`,
-        "limit=50"
+        "limit=10"
       );
     })
   );

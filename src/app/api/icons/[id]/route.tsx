@@ -8,7 +8,7 @@ export async function GET(
 ) {
   const { id } = await params;
   // const SERVER = "https://q-dev.trapti.tech";
-  const SERVER = process.env.SERVER_PATH;
+  const SERVER = process.env.SERVER_PATH || "https://q.trap.jp";;
   const res = await fetch(`${SERVER}/api/v3/public/icon/${id}`);
   return res;
 }

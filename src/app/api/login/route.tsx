@@ -1,5 +1,5 @@
 export async function POST(req: Request) {
-  const SERVER = process.env.SERVER_PATH;
+  const SERVER = process.env.SERVER_PATH  || "https://q.trap.jp";;
   const name = req.headers.get("name");
   const password = req.headers.get("password");
   const res = await fetch(`${SERVER}/api/v3/login`, {

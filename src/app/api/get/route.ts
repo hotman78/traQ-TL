@@ -4,7 +4,7 @@ export const config = {
 
 export async function GET(req: Request) {
   // const SERVER = "http://q-dev.trapti.tech";
-  const SERVER = process.env.SERVER_PATH;
+  const SERVER = process.env.SERVER_PATH || "https://q.trap.jp";
   const path = req.headers.get("Path");
   const query = req.headers.get("Query");
   const cookie = req.headers.get("Cookie");
