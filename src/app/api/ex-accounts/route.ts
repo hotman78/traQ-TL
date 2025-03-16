@@ -1,15 +1,13 @@
 export async function POST(req: Request) {
   const SERVER = process.env.SERVER_PATH;
-  const name = req.headers.get("name");
-  const password = req.headers.get("password");
-  const res = await fetch(`${SERVER}/api/v3/login`, {
+  const providerName = req.headers.get("providerName");
+  const res = await fetch(`${SERVER}/api/v3/login?redirect=q.trap.jp`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      name: name,
-      password: password
+      providerName: providerName
     }),
     credentials: "include" // 追加
   });

@@ -5,21 +5,27 @@ import {
   SubscriptionType,
   UserType
 } from "@/lib/type";
-import { get_json, login } from "@/lib/get";
+import { get_json } from "@/lib/get";
 import { date2str } from "@/lib/date2str";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic"; //動的にレンダリングする
 export const fetchCache = "force-no-store"; // 常に最新のデータを取得する
 
 export default async function Home() {
-  const cookie = await login("traq", "traq");
+  const cookieStore = await cookies();
+  if (!cookieStore.has("cookie")) {
+    redirect("/login");
+  }
+  const cookie = cookieStore.get("cookie")?.value || "";
   const subscriptions = await get_json(cookie, `/users/me/subscriptions`, "");
   const rawmessages = await Promise.all(
     subscriptions.map((subscription: SubscriptionType) => {
       return get_json(
         cookie,
         `/channels/${subscription.channelId}/messages`,
-        ""
+        "limit=50"
       );
     })
   );
@@ -49,15 +55,17 @@ export default async function Home() {
               <div className="d-flex p-2">
                 <div className="">
                   <Image
-                    src={`/api/icons/${user.name}`}
+                    src={`/api/icons/${user ? user.name : "null"}`}
                     alt={""}
                     width="40"
                     height="40"
                   />
                 </div>
                 <div className="d-inline px-2">
-                  <strong className="d-inline text-white">{user.name}</strong>:{" "}
-                  {channel.name}{" "}
+                  <strong className="d-inline text-white">
+                    {user ? user.name : "null"}
+                  </strong>
+                  : {channel.name}{" "}
                   <p className="d-inline text-secondary">
                     {date2str(new Date(message.createdAt))}
                   </p>
