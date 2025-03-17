@@ -9,6 +9,7 @@ import { get_json } from "@/lib/get";
 import { date2str } from "@/lib/date2str";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import Article from "@/components/article";
 
 export const dynamic = "force-dynamic"; //動的にレンダリングする
 export const fetchCache = "force-no-store"; // 常に最新のデータを取得する
@@ -71,7 +72,7 @@ export default async function Home() {
                     {date2str(new Date(message.createdAt))}
                   </p>
                   <br />
-                  {message.content}
+                  <Article content={message.content} />
                 </div>
               </div>
             </div>
