@@ -5,9 +5,11 @@ import { redirect } from "next/navigation";
 export default async function Login() {
   async function subscribe(formData: FormData) {
     "use server";
-    console.log(formData);
     const cookieStore = await cookies();
-    const cookie = await login(formData.get("name") as string, formData.get("password") as string);
+    const cookie = await login(
+      formData.get("name") as string,
+      formData.get("password") as string
+    );
     cookieStore.set("cookie", cookie);
     redirect("/home");
   }

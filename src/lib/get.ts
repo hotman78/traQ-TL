@@ -37,6 +37,5 @@ export async function login_by_ex_accounts() {
       providerName: "q.trap.jp"
     })
   });
-  // console.log(res);
   return res.headers.getSetCookie().toString();
 }
