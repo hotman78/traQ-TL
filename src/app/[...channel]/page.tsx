@@ -1,11 +1,8 @@
-import Image from "next/image";
 import { ChannelType, MessageType, UserType } from "@/lib/type";
 import { get_json } from "@/lib/get";
-import { date2str } from "@/lib/date2str";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import Article from "@/components/article";
-
+import Message from "@/components/message";
 export const dynamic = "force-dynamic"; //動的にレンダリングする
 export const fetchCache = "force-no-store"; // 常に最新のデータを取得する
 
@@ -53,29 +50,12 @@ export default async function Channel({
             channel => channel.id === message.channelId
           )[0];
           return (
-            <div key={message.id} className="card">
-              <div className="d-flex p-2">
-                <div className="">
-                  <Image
-                    src={`/api/icons/${user ? user.name : "null"}`}
-                    alt={""}
-                    width="40"
-                    height="40"
-                  />
-                </div>
-                <div className="d-inline px-2">
-                  <strong className="d-inline text-white">
-                    {user ? user.name : "null"}
-                  </strong>
-                  : {channel.name}{" "}
-                  <p className="d-inline text-secondary">
-                    {date2str(new Date(message.createdAt))}
-                  </p>
-                  <br />
-                  <Article content={message.content} />
-                </div>
-              </div>
-            </div>
+            <Message
+              key={message.id}
+              message={message}
+              user={user}
+              channel={channel}
+            />
           );
         })}
         <div className="dropup position-absolute bottom-0 end-0 rounded-circle m-5">
