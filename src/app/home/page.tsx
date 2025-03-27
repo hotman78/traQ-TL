@@ -19,12 +19,15 @@ export default async function Home() {
   }
   const cookie = cookieStore.get("cookie")?.value || "";
   const subscriptions = await get_json(cookie, `/users/me/subscriptions`, "");
+  const scince = new Date();
+  scince.setDate(scince.getDate() - 7);
+  console.log(scince.toISOString());
   const rawmessages = await Promise.all(
     subscriptions.map((subscription: SubscriptionType) => {
       return get_json(
         cookie,
         `/channels/${subscription.channelId}/messages`,
-        "limit=10"
+        `limit=10&since=${scince.toISOString()}`
       );
     })
   );

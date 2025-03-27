@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="ja">
       <body
         data-bs-theme="dark"
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
         {children}
       </body>
