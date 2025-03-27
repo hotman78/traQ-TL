@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "dotenv -- bash -c 'SERVER_PATH=$SERVER_ADRESS next dev --turbopack'",
-    "build": "dotenv -- bash -c 'SERVER_PATH=$SERVER_ADRESS NODE_ENV=production next build'",
+    "build": "mkdir -p ./.next/cache/images && dotenv -- bash -c 'SERVER_PATH=$SERVER_ADRESS NODE_ENV=production next build'",
     "start": "dotenv -- bash -c 'SERVER_PATH=$SERVER_ADRESS next start'",
     "dev-local": "SERVER_PATH='https://host.docker.internal:3000' next dev --turbopack",
     "lint": "next lint",
